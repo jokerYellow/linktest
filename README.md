@@ -175,6 +175,17 @@ gcc -g -c  main.m
 export DYLD_LIBRARY_PATH=YLD_LIBRARY_PATH:foo ; ld main.o foo1/libfoo.a -lc foo/libfoo.so  -framework Foundation ; ./a.out
 objc[40771]: Class Foo is implemented in both /Users/pipasese/Documents/miCode/linkdemo/foo/libfoo.so (0x104c690d8) and /Users/pipasese/Documents/miCode/linkdemo/./a.out (0x104c5e0f8). One of the two will be used. Which one is undefined.
 2020-05-09 10:01:05.218 a.out[40771:1268288] [Foo name] is foo1
+
+$ make runStaticAndDynamicMultipleSymbols1
+gcc -g -c  main.m 
+export DYLD_LIBRARY_PATH=YLD_LIBRARY_PATH:foo ; ld main.o foo1/libfoo1.a -lc foo/libfoo.so  -framework Foundation ; ./a.out
+objc[19546]: Class Foo is implemented in both /Users/pipasese/Documents/miCode/linkdemo/foo/libfoo.so (0x108bac0d8) and /Users/pipasese/Documents/miCode/linkdemo/./a.out (0x108ba20f8). One of the two will be used. Which one is undefined.
+2020-05-12 20:26:04.948 a.out[19546:256796] [Foo name] is foo1
+
+$ make runStaticAndDynamicMultipleSymbols2
+gcc -g -c  main.m
+export DYLD_LIBRARY_PATH=YLD_LIBRARY_PATH:foo ; ld main.o -lc foo/libfoo.so foo1/libfoo1.a  -framework Foundation ; ./a.out
+2020-05-12 20:27:20.273 a.out[19624:257547] [Foo name] is foo
 ````
 
 ## 结论
