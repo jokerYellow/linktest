@@ -66,3 +66,21 @@ runStaticAndDynamicMultipleSymbols:
 	export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:foo ; ld main.o foo1/libfoo.a -lc foo/libfoo.so  -framework Foundation ; ./a.out
 	rm a.out main.o
 	rm -rf a.out.dSYM
+
+runStaticAndDynamicMultipleSymbols1: 
+	gcc -g -c  main.m 
+	export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:foo ; ld main.o foo1/libfoo1.a -lc foo/libfoo.so  -framework Foundation ; ./a.out
+	rm a.out main.o
+	rm -rf a.out.dSYM
+
+runStaticAndDynamicMultipleSymbols2: 
+	gcc -g -c  main.m
+	export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:foo ; ld main.o -lc foo/libfoo.so foo1/libfoo1.a  -framework Foundation ; ./a.out
+	rm a.out main.o
+	rm -rf a.out.dSYM
+
+runStaticAndDynamicMultipleSymbols3: 
+	gcc -g -c  main.m
+	export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:foo ; ld main.o -lc foo/libfoo.so foo1/libfoo.a  -framework Foundation ; ./a.out
+	rm a.out main.o
+	rm -rf a.out.dSYM

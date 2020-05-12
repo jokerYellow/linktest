@@ -167,7 +167,7 @@ objc[40702]: Class Foo is implemented in both /Users/pipasese/Documents/miCode/l
 
 ## 动态库与静态库重复
 
-会使用静态库的代码，静态库链接时已经写入可执行文件，动态库启动时链接会忽略。
+会使用链接时命令行靠前的库的代码，参照**符号解析过程**。
 
 ````sh
 $ make runStaticAndDynamicMultipleSymbols
